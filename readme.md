@@ -27,7 +27,7 @@ In **Admin** => **Members** => **Membergroups** under any post-based membergroup
 This mod was tested on SMF 2.0.15, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.
 
 ## Changelog
-The changelog has been removed and can be seen at [XPtsp.com](http://www.xptsp.com/board/index.php?topic=662.msg975#msg975).
+The changelog has been removed and can be seen at [XPtsp.com](http://www.xptsp.com/board/free-modifications/thanks-received-membergroups/?tab=1).
 
 ## License
 Copyright (c) 2018, Douglas Orend

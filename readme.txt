@@ -24,7 +24,7 @@ o [url=https://www.simplemachines.org/community/index.php?topic=559550.0]Based m
 This mod was tested on SMF 2.0.15, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
-The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=662.msg975#msg975]XPtsp.com[/url].
+The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/free-modifications/thanks-received-membergroups/?tab=1]XPtsp.com[/url].
 
 [color=blue][b][size=12pt][u]License[/u][/size][/b][/color]
 [quote]Copyright (c) 2018, Douglas Orend

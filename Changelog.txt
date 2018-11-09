@@ -1,3 +1,7 @@
+v1.2 - November 8th, 2018
+o No functionality change.
+o Updated documentation to point to new website.
+
 v1.1 - October 22nd, 2018
 o Added Spanish Latin translations by [url=http://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee [BC][/url].
 
