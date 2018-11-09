@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:ThanksGroups</id>
 <name>Thanks Received Membergroups</name>
-<version>1.0</version>
+<version>1.0.1</version>
 
 <file name="$sourcedir/SayThanks.php">
 	<!-- SayThanks::thank function -->
@@ -14,7 +14,7 @@
 		if ($ajax) {
 			$context['saythanks_refresh'] = $msg;]]></search>
 		<add><![CDATA[
-			updateStats('postgroups', 'thanks_count', array($member));]]></add>
+			updateStats('postgroups', array($member), 'thanks_count');]]></add>
 	</operation>
 	
 	<!-- SayThanks::withdrawthank function -->
@@ -24,35 +24,88 @@
 		if ($ajax) {
 			loadTemplate('SayThanks');]]></search>
 		<add><![CDATA[
-			updateStats('postgroups', 'thanks_count', array($member));]]></add>
+			updateStats('postgroups', array($member), 'thanks_count');]]></add>
 	</operation>
 </file>		
+<file name="$sourcedir/ManageMembergroups.php">
+	<!-- ModifyMembergroups function -->
+	<operation>	<!-- line 81 -->
+		<search position="before"><![CDATA['settings' => array('ModifyMembergroupsettings', 'admin_forum'),]]></search>
+		<add><![CDATA[
+		'reindex' => array('ReIndexMembergroups', 'admin_forum'),]]></add>
+	</operation>
+	
+	<!-- New ReIndexMembergroups function -->
+	<operation>	<!-- EOF -->
+		<search position="end" />
+		<add><![CDATA[
+function ReIndexMembergroups()
+{
+	updateStats('postgroups');
+	redirectexit('action=admin;area=membergroups');
+}
+]]></add>
+	</operation>
+</file>
 <file name="$sourcedir/Subs.php">
 	<!-- updateStats function -->
-	<operation>	<!-- line 376 -->
-		<search position="replace"><![CDATA[if ($parameter2 !== null && !in_array('posts', $parameter2))]]></search>
-		<add><![CDATA[if ($parameter2 !== null && !in_array('thanks_count', $parameter2))]]></add>
-	</operation>
-	<operation>	<!-- line 410 -->
-		<search position="replace"><![CDATA[WHEN posts >= ' . $min_posts . (!empty($lastMin) ? ' AND posts <= ' . $lastMin : '') . ' THEN ' . $id;]]></search>
-		<add><![CDATA[WHEN mts.thanks_count >= ' . $min_posts . (!empty($lastMin) ? ' AND mts.thanks_count <= ' . $lastMin : '') . ' THEN ' . $id;]]></add>
-	</operation>
-	<operation>	<!-- line 414 -->
-		<search position="replace"><![CDATA[// A big fat CASE WHEN... END is faster than a zillion UPDATE's ;).
-		$smcFunc['db_query']('', '
-			UPDATE {db_prefix}members
-			SET id_post_group = CASE ' . $conditions . '
-					ELSE 0
-				END' . ($parameter1 != null ? '
-			WHERE ' . (is_array($parameter1) ? 'id_member IN ({array_int:members})' : 'id_member = {int:members}') : ''),]]></search>
-		<add><![CDATA[// A big fat CASE WHEN... END is faster than a zillion UPDATE's ;).
+	<operation>	<!-- line 374 -->
+		<search position="before"><![CDATA[case 'postgroups':]]></search>
+		<add><![CDATA[
+		// Parameter two is the updated columns: we should check to see if we base groups off any of these.
+		if ($parameter2 !== null && !in_array('thanks_count', $parameter2))
+			return;
+
+		if (($postgroups = cache_get_data('updateStats:postgroups', 360)) == null)
+		{
+			// Fetch the postgroups!
+			$request = $smcFunc['db_query']('', '
+				SELECT id_group, min_posts
+				FROM {db_prefix}membergroups
+				WHERE min_posts != {int:min_posts}',
+				array(
+					'min_posts' => -1,
+				)
+			);
+			$postgroups = array();
+			while ($row = $smcFunc['db_fetch_assoc']($request))
+				$postgroups[$row['id_group']] = $row['min_posts'];
+			$smcFunc['db_free_result']($request);
+
+			// Sort them this way because if it's done with MySQL it causes a filesort :(.
+			arsort($postgroups);
+
+			cache_put_data('updateStats:postgroups', $postgroups, 360);
+		}
+
+		// Oh great, they've screwed their post groups.
+		if (empty($postgroups))
+			return;
+
+		// Set all membergroups from most posts to least posts.
+		$conditions = '';
+		foreach ($postgroups as $id => $min_posts)
+		{
+			$conditions .= '
+					WHEN mts.thanks_count >= ' . $min_posts . (!empty($lastMin) ? ' AND mts.thanks_count <= ' . $lastMin : '') . ' THEN ' . $id;
+			$lastMin = $min_posts;
+		}
+
+		// A big fat CASE WHEN... END is faster than a zillion UPDATE's ;).
 		$smcFunc['db_query']('', '
 			UPDATE {db_prefix}members AS mem
 			LEFT JOIN {db_prefix}messages_thanks_stats AS mts ON (mts.id_member = mem.id_member)
 			SET mem.id_post_group = CASE ' . $conditions . '
-					ELSE 0
+					ELSE ' . end(array_keys($postgroups)) . '
 				END' . ($parameter1 != null ? '
-			WHERE ' . (is_array($parameter1) ? 'mem.id_member IN ({array_int:members})' : 'mem.id_member = {int:members}') : ''),]]></add>
+			WHERE ' . (is_array($parameter1) ? 'mem.id_member IN ({array_int:members})' : 'mem.id_member = {int:members}') : ''),
+			array(
+				'members' => $parameter1,
+			)
+		);
+		break;
+
+		case 'original_postgroups':]]></add>
 	</operation>
 </file>
 </modification>

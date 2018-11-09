@@ -1,2 +1,8 @@
+v1.0.1 - April 16th, 2018
+o Fixed code in [b]SayThanks.php[/b] to update postgroups when giving/withdrawing thanks.
+o Added entire case for [b]updateStats[/b] function in order to restore original postgroups.
+o Added a post-install redirect to update the postgroups to reflect thanks counts.
+o Added an uninstall script to return the postgroups to reflect post counts.
+
 v1.0 - March 28th, 2018
 o Initial release to the public

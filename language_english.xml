@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:ThanksGroups</id>
 <name>Thanks Received Membergroups</name>
-<version>1.0</version>
+<version>1.0.1</version>
 
 <file name="$languagedir/ManageMembers.english.php">
 	<operation>
@@ -12,7 +12,7 @@
 	</operation>
 	<operation>
 		<search position="replace"><![CDATA[$txt['membergroups_group_type_post'] = 'Post Based <span class="smalltext">(Membership based on post count)</span>';]]></search>
-		<ad><![CDATA[$txt['membergroups_group_type_post'] = 'Thanks Based <span class="smalltext">(Membership based on thanks received)</span>';]]></add>
+		<add><![CDATA[$txt['membergroups_group_type_post'] = 'Thanks Based <span class="smalltext">(Membership based on thanks received)</span>';]]></add>
 	</operation>
 	<operation>
 		<search position="replace"><![CDATA[$txt['membergroups_min_posts'] = 'Required posts';]]></search>

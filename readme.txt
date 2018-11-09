@@ -1,8 +1,15 @@
 [hr]
-[center][color=red][size=16pt][b]THANKS RECEIVED MEMBERGROUPS v1.0[/b][/size][/color]
-[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=http://custom.simplemachines.org/mods/index.php?mod=4087]Link to Mod[/url]
+[center][color=red][size=16pt][b]THANKS RECEIVED MEMBERGROUPS v1.0.1[/b][/size][/color]
+[url=http://www.simplemachines.org/community/index.php?action=profile;u=253913][b]By Dougiefresh[/b][/url] -> [url=https://custom.simplemachines.org/mods/index.php?mod=4180]Link to Mod[/url]
 [/center]
 [hr]
+
+[color=blue][b][size=12pt][u]MOD REQUIREMENTS[/u][/size][/b][/color]
+This mod requires the database tables that the [url=https://www.simplemachines.org/community/index.php?topic=527032.msg3737095#msg3737095]Say Thanks[/url] mod creates.  If that mod is not installed, this mod will result to install!
+
+Uninstalling the [url=https://www.simplemachines.org/community/index.php?topic=527032.msg3737095#msg3737095]Say Thanks[/url] mod and removing the tables it creates will create and/or generally cause problems until this mod is removed.
+
+No support will be rendered if these mod requirements are not met!  [b][color=red]YOU'VE BEEN WARNED![/color][/b]
 
 [color=blue][b][size=12pt][u]Introduction[/u][/size][/b][/color]
 This mod changes the post-based membergroups to "thanks count"-based membergroups, where the number of thanks received from other members determines which membergroup you belong to.
@@ -14,7 +21,7 @@ In [b]Admin[/b] => [b]Members[/b] => [b]Membergroups[/b] under any post-based me
 o [url=https://www.simplemachines.org/community/index.php?topic=559550.0]Based membergroups by thanks_count from mod Say Thanks[/url]
 
 [color=blue][b][size=12pt][u]Compatibility Notes[/u][/size][/b][/color]
-This mod was tested on SMF 2.0.15, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.  
+This mod was tested on SMF 2.0.15, but should work on SMF 2.0 and up.  SMF 1.x is not and will not be supported.
 
 [color=blue][b][size=12pt][u]Changelog[/u][/size][/b][/color]
 The changelog has been removed and can be seen at [url=http://www.xptsp.com/board/index.php?topic=662.msg975#msg975]XPtsp.com[/url].
