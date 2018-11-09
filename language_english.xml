@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:ThanksGroups</id>
+<name>Thanks Received Membergroups</name>
+<version>1.0</version>
+
+<file name="$languagedir/ManageMembers.english.php">
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_post'] = 'Post count based groups';]]></search>
+		<add><![CDATA[$txt['membergroups_post'] = 'Thanks based groups';]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_group_type_post'] = 'Post Based <span class="smalltext">(Membership based on post count)</span>';]]></search>
+		<ad><![CDATA[$txt['membergroups_group_type_post'] = 'Thanks Based <span class="smalltext">(Membership based on thanks received)</span>';]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_min_posts'] = 'Required posts';]]></search>
+		<add><![CDATA[$txt['membergroups_min_posts'] = 'Number of Thanks Received';]]></add>
+	</operation>
+</file>
+</modification>

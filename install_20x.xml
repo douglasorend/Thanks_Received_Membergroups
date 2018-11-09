@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:ThanksGroups</id>
+<name>Thanks Received Membergroups</name>
+<version>1.0</version>
+
+<file name="$sourcedir/SayThanks.php">
+	<!-- SayThanks::thank function -->
+	<operation>	<!-- line 99 -->
+		<search position="after"><![CDATA[
+		}
+
+		if ($ajax) {
+			$context['saythanks_refresh'] = $msg;]]></search>
+		<add><![CDATA[
+			updateStats('postgroups', 'thanks_count', array($member));]]></add>
+	</operation>
+	
+	<!-- SayThanks::withdrawthank function -->
+	<operation>	<!-- line 222 -->
+		<search position="after"><![CDATA[
+		}
+		if ($ajax) {
+			loadTemplate('SayThanks');]]></search>
+		<add><![CDATA[
+			updateStats('postgroups', 'thanks_count', array($member));]]></add>
+	</operation>
+</file>		
+<file name="$sourcedir/Subs.php">
+	<!-- updateStats function -->
+	<operation>	<!-- line 376 -->
+		<search position="replace"><![CDATA[if ($parameter2 !== null && !in_array('posts', $parameter2))]]></search>
+		<add><![CDATA[if ($parameter2 !== null && !in_array('thanks_count', $parameter2))]]></add>
+	</operation>
+	<operation>	<!-- line 410 -->
+		<search position="replace"><![CDATA[WHEN posts >= ' . $min_posts . (!empty($lastMin) ? ' AND posts <= ' . $lastMin : '') . ' THEN ' . $id;]]></search>
+		<add><![CDATA[WHEN mts.thanks_count >= ' . $min_posts . (!empty($lastMin) ? ' AND mts.thanks_count <= ' . $lastMin : '') . ' THEN ' . $id;]]></add>
+	</operation>
+	<operation>	<!-- line 414 -->
+		<search position="replace"><![CDATA[// A big fat CASE WHEN... END is faster than a zillion UPDATE's ;).
+		$smcFunc['db_query']('', '
+			UPDATE {db_prefix}members
+			SET id_post_group = CASE ' . $conditions . '
+					ELSE 0
+				END' . ($parameter1 != null ? '
+			WHERE ' . (is_array($parameter1) ? 'id_member IN ({array_int:members})' : 'id_member = {int:members}') : ''),]]></search>
+		<add><![CDATA[// A big fat CASE WHEN... END is faster than a zillion UPDATE's ;).
+		$smcFunc['db_query']('', '
+			UPDATE {db_prefix}members AS mem
+			LEFT JOIN {db_prefix}messages_thanks_stats AS mts ON (mts.id_member = mem.id_member)
+			SET mem.id_post_group = CASE ' . $conditions . '
+					ELSE 0
+				END' . ($parameter1 != null ? '
+			WHERE ' . (is_array($parameter1) ? 'mem.id_member IN ({array_int:members})' : 'mem.id_member = {int:members}') : ''),]]></add>
+	</operation>
+</file>
+</modification>
