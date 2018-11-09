@@ -3,7 +3,7 @@
 <modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
 <id>Dougiefresh:ThanksGroups</id>
 <name>Thanks Received Membergroups</name>
-<version>1.0.1</version>
+<version>1.0.2</version>
 
 <file name="$sourcedir/SayThanks.php">
 	<!-- SayThanks::thank function -->
@@ -14,7 +14,7 @@
 		if ($ajax) {
 			$context['saythanks_refresh'] = $msg;]]></search>
 		<add><![CDATA[
-			updateStats('postgroups', array($member), 'thanks_count');]]></add>
+			updateStats('postgroups', $member);]]></add>
 	</operation>
 	
 	<!-- SayThanks::withdrawthank function -->
@@ -24,7 +24,7 @@
 		if ($ajax) {
 			loadTemplate('SayThanks');]]></search>
 		<add><![CDATA[
-			updateStats('postgroups', array($member), 'thanks_count');]]></add>
+			updateStats('postgroups', $member);]]></add>
 	</operation>
 </file>		
 <file name="$sourcedir/ManageMembergroups.php">
@@ -92,11 +92,12 @@ function ReIndexMembergroups()
 		}
 
 		// A big fat CASE WHEN... END is faster than a zillion UPDATE's ;).
+		$keys = array_keys($postgroups);
 		$smcFunc['db_query']('', '
 			UPDATE {db_prefix}members AS mem
 			LEFT JOIN {db_prefix}messages_thanks_stats AS mts ON (mts.id_member = mem.id_member)
 			SET mem.id_post_group = CASE ' . $conditions . '
-					ELSE ' . end(array_keys($postgroups)) . '
+					ELSE ' . end($keys) . '
 				END' . ($parameter1 != null ? '
 			WHERE ' . (is_array($parameter1) ? 'mem.id_member IN ({array_int:members})' : 'mem.id_member = {int:members}') : ''),
 			array(

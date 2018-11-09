@@ -1,3 +1,8 @@
+v1.0.2 - June 3rd, 2018
+o Fixed the parameter order for calls to [b]updateStats[/b].
+o Fixed "Only variables should be passed by reference" error message.
+o Changed [b]file_check.php[/b] message to more "family-friendly", per Customization Team request.
+
 v1.0.1 - April 16th, 2018
 o Fixed code in [b]SayThanks.php[/b] to update postgroups when giving/withdrawing thanks.
 o Added entire case for [b]updateStats[/b] function in order to restore original postgroups.

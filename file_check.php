@@ -15,5 +15,5 @@ if (!file_exists($sourcedir . '/SayThanks.php'))
 
 // Echo that we are done if necessary:
 if ($SSI_INSTALL)
-	echo 'Stupid file check has been completed.';
+	echo 'Required file check has been completed.';
 ?>
