@@ -1,3 +1,6 @@
+v1.0.3 - June 19th, 2018
+o Changed [b]restore_membergroups.php[/b] message to more "family-friendly", per Customization Team request.
+
 v1.0.2 - June 3rd, 2018
 o Fixed the parameter order for calls to [b]updateStats[/b].
 o Fixed "Only variables should be passed by reference" error message.

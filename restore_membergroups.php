@@ -14,5 +14,5 @@ updateStats('original_postgroups');
 
 // Echo that we are done if necessary:
 if ($SSI_INSTALL)
-	echo 'Stupid file check has been completed.';
+	echo 'Memberships have been restored using post count information.';
 ?>
