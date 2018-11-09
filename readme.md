@@ -1,6 +1,6 @@
 -------
 
-# THANKS RECEIVED MEMBERGROUPS v1.1
+# THANKS RECEIVED MEMBERGROUPS v1.2
 
 [**By Dougiefresh**](http://www.simplemachines.org/community/index.php?action=profile;u=253913) -> [Link to Mod](https://custom.simplemachines.org/mods/index.php?mod=4180)
 
