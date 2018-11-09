@@ -5,18 +5,20 @@
 	<id>Dougiefresh:ThanksGroups</id>
 	<name>Thanks Received Membergroups</name>
 	<type>modification</type>
-	<version>1.0.3</version>
+	<version>1.1</version>
 
 	<install for="2.0 - 2.0.99">
 		<readme parsebbc="true">readme.txt</readme>
 		<code>file_check.php</code>
 		<modification>install_20x.xml</modification>
 		<modification>language_english.xml</modification>
+		<modification>language_spanish-latin.xml</modification>
 		<redirect timeout="5000" url="?action=admin;area=membergroups;sa=reindex">The mod will now redirect to the Manage Membergroups area in order to update the post groups to reflect the thanks given by individual members.</redirect>
 	</install>
 	<uninstall for="2.0 - 2.0.99">
 		<modification reverse="true">install_20x.xml</modification>
 		<modification reverse="true">language_english.xml</modification>
+		<modification reverse="true">language_spanish-latin.xml</modification>
 		<code>restore_membergroups.php</code>
 	</uninstall>
 </package-info>

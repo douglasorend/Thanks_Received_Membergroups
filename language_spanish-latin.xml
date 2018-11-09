@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>Dougiefresh:ThanksGroups</id>
+<name>Thanks Received Membergroups</name>
+<version>1.1</version>
+
+<file name="$languagedir/ManageMembers.spanish_latin.php" error="skip">
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_post'] = 'Grupos basados en el conteo de mensajes';]]></search>
+		<add><![CDATA[$txt['membergroups_post'] = 'Grupos basados en gracias';]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_group_type_post'] = 'Basado en Mensajes <span class="smalltext">(La membres&iacute;a est&aacute; basada en el conteo de mensajes)</span>';]]></search>
+		<add><![CDATA[$txt['membergroups_group_type_post'] = 'Basado en Gracias <span class="smalltext">(La membres&iacute;a basada en agradecimientos recibidos)</span>';]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_min_posts'] = 'N&uacute;mero de mensajes requeridos';]]></search>
+		<add><![CDATA[$txt['membergroups_min_posts'] = 'N&uacute;mero de agradecimientos recibidos;]]></add>
+	</operation>
+</file>
+
+<file name="$languagedir/ManageMembers.spanish_latin-utf8.php" error="skip">
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_post'] = 'Grupos basados en el conteo de mensajes';]]></search>
+		<add><![CDATA[$txt['membergroups_post'] = 'Grupos basados en gracias';]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_group_type_post'] = 'Basado en Mensajes <span class="smalltext">(La membresía está basada en el conteo de mensajes)</span>';]]></search>
+		<add><![CDATA[$txt['membergroups_group_type_post'] = 'Basado en Gracias <span class="smalltext">(La membresía basada en agradecimientos recibidos)</span>';]]></add>
+	</operation>
+	<operation>
+		<search position="replace"><![CDATA[$txt['membergroups_min_posts'] = 'Número de mensajes requeridos';]]></search>
+		<add><![CDATA[$txt['membergroups_min_posts'] = 'Número de agradecimientos recibidos;]]></add>
+	</operation>
+</file>
+</modification>

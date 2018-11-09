@@ -1,3 +1,6 @@
+v1.1 - October 22nd, 2018
+o Added Spanish Latin translations by [url=http://www.simplemachines.org/community/index.php?action=profile;u=322597]Rock Lee [BC][/url].
+
 v1.0.3 - June 19th, 2018
 o Changed [b]restore_membergroups.php[/b] message to more "family-friendly", per Customization Team request.
 
